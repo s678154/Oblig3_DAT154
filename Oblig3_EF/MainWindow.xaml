@@ -1,0 +1,126 @@
+﻿<Window x:Class="Oblig3_EF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Oblig3_EF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <!-- OPPGAVE A -->
+            <!-- Fane for studenter -->
+            <TabItem Header="Studenter">
+                <Grid>
+                    <!-- Søkefelt og knapper -->
+                    <TextBox Name="searchField" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button Name="DoSearch" Content="Search" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Click="DoSearch_Click"/>
+                    <Button Name="DoEdit" Content="Editor" HorizontalAlignment="Left" Margin="194,10,0,0" VerticalAlignment="Top" Click="DoEdit_Click"/>
+
+                    <!-- Listevisning studenter -->
+                    <ListView Name="studentList" ItemsSource="{Binding}" Margin="0,52,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="200" Header="Student" DisplayMemberBinding="{Binding Path=Studentname}" />
+                                    <GridViewColumn Width="100" Header="ID" DisplayMemberBinding="{Binding Path=Id}" />
+                                    <GridViewColumn Width="100" Header="Age" DisplayMemberBinding="{Binding Path=Studentage}" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+            <!-- OPPGAVE B -->
+            <!-- Fane for kurs -->
+            <TabItem Header="Courses">
+                <Grid>
+                    <TextBlock Text="Double click a course to view more info" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top" 
+                               FontSize="12"/>
+                    
+                    <!--Listevisning courses-->
+                    <ListView Name="courseList" ItemsSource="{Binding}" Margin="0,52,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="200" Header="Course Name" DisplayMemberBinding="{Binding Path=Coursename}" />
+                                    <GridViewColumn Width="100" Header="Course Code" DisplayMemberBinding="{Binding Path=Coursecode}" />
+                                    <GridViewColumn Width="100" Header="Semester" DisplayMemberBinding="{Binding Path=Semester}" />
+                                    <GridViewColumn Width="100" Header="Teacher" DisplayMemberBinding="{Binding Path=Teacher}" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </TabItem>
+            
+            <!--OPPGAVE C-->
+
+            <TabItem Header="Grades">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <!-- Rad for kontrollene -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Rad for ListView, som tar opp resten av plassen -->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Velgefelt for karakter-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="Velg en karakter:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox Name="gradeComboBox" Width="100">
+                            <ComboBoxItem Content="A"/>
+                            <ComboBoxItem Content="B"/>
+                            <ComboBoxItem Content="C"/>
+                            <ComboBoxItem Content="D"/>
+                            <ComboBoxItem Content="E"/>
+                            <ComboBoxItem Content="F"/>
+                        </ComboBox>
+                        <Button Content="Filtrer" Width="100" Margin="10,0,0,0" Click="FilterGrades_Click"/>
+                    </StackPanel>
+                    <!--Listeview grades-->
+                    <ListView Name="gradesListView" Grid.Row="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Student" Width="150" DisplayMemberBinding="{Binding Student.Studentname}" />
+                                <GridViewColumn Header="Course" Width="150" DisplayMemberBinding="{Binding CoursecodeNavigation.Coursename}" />
+                                <GridViewColumn Header="Grade" Width="100" DisplayMemberBinding="{Binding Grade1}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+            
+            <!--OPPGAVE D:-->
+            <TabItem Header="Failed Students">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <!-- Rad for knapp -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Rad for ListView -->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Knapp for å laste inn data for studenter som strøk -->
+                    <Button Content="Vis alle strøkne" Grid.Row="0" Click="ShowFailed_Click" Margin="0,0,0,10"/>
+                    
+                    <!-- ListView for å vise studentene som strøk -->
+                    <ListView Name="failedListView" Grid.Row="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Student" Width="150" DisplayMemberBinding="{Binding Student.Studentname}" />
+                                <GridViewColumn Header="Course" Width="150" DisplayMemberBinding="{Binding CoursecodeNavigation.Coursename}" />
+                                <GridViewColumn Header="Grade" Width="100" DisplayMemberBinding="{Binding Grade1}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
