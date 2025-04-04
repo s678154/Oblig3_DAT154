@@ -148,3 +148,4 @@ C:\Users\semma\Documents\4 Semester\DAT154\Oblig3_EF\Oblig3_EF\obj\Debug\net8.0-
 C:\Users\semma\Documents\4 Semester\DAT154\Oblig3_EF\Oblig3_EF\obj\Debug\net8.0-windows\StudentEditor.baml
 C:\Users\semma\Documents\4 Semester\DAT154\Oblig3_EF\Oblig3_EF\obj\Debug\net8.0-windows\CourseOverview.g.cs
 C:\Users\semma\Documents\4 Semester\DAT154\Oblig3_EF\Oblig3_EF\obj\Debug\net8.0-windows\CourseOverview.baml
+C:\Users\semma\Documents\4 Semester\DAT154\Oblig3_EF\Oblig3_EF\obj\Debug\net8.0-windows\Oblig3_EF.sourcelink.json

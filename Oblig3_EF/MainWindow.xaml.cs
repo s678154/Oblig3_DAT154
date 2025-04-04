@@ -137,5 +137,20 @@ namespace Oblig3_EF
             }
         }
 
+        //METODER TIL OPPGAVE E: 
+        private void ShowFailed_Click(object sender, RoutedEventArgs e)
+        {
+            // Henter alle som strøk
+            var failedGrades = dx.Grades
+                .Include(g => g.Student)
+                .Include(g => g.CoursecodeNavigation)
+                .Where(g => g.Grade1 == "F")
+                .OrderBy(g => g.Student.Studentname)  //sorter etter studentnavn. trenger kanskje ikke denne pga overhead men ja
+                .ToList();
+
+            failedListView.ItemsSource = failedGrades;
+        }
+
+
     }
 }
