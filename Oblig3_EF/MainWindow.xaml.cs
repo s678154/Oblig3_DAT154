@@ -8,7 +8,9 @@ using Oblig3_EF.Models;
 namespace Oblig3_EF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Hver oppgave har sin egen TabItem i MainWindow.xaml. Oppgave 1: Studenter, Oppg 2: Courses, Oppg 3: Grades, Oppg 4: Failed Students & Oppg 5: Add/Rem Participants
+    /// I tillegg har oppgave 1 ett ekstra window - StudentEditor.xaml og tilhørende cs kode.
+    /// Oppgave 2 har også et ekstra et vindu - CourseOverview.xaml med tilhørende cs kode. 
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -36,10 +38,13 @@ namespace Oblig3_EF
             courseList.DataContext = Courses.OrderBy(s => s.Coursename); //kunne kanskje ordered by kode istedenfor
 
             courseList.MouseDoubleClick += CourseList_MouseDoubleClick;
+
+            // OPPGAVE 5: fylle inn ComboBox for å legge til/fjerne studentdeltakelse på fag
+            PopulateManageCourseComboBox();
         }
 
  
-        //METODER TIL OPPGAVE A: 
+        //METODER TIL OPPGAVE 1: 
         private void SearchField_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             DoSearch_Click(DoSearch, new RoutedEventArgs());
@@ -87,7 +92,7 @@ namespace Oblig3_EF
             ed.Show();
         }
 
-        //METODER TIL OPPGAVE B:
+        //METODER TIL OPPGAVE 2:
         private void CourseList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -100,7 +105,7 @@ namespace Oblig3_EF
             }
         }
 
-        //METODER TIL OPPGAVE C:
+        //METODER TIL OPPGAVE 3:
         private void FilterGrades_Click(object sender, RoutedEventArgs e)
         {
             if (gradeComboBox.SelectedItem is ComboBoxItem selectedItem)
@@ -137,7 +142,7 @@ namespace Oblig3_EF
             }
         }
 
-        //METODER TIL OPPGAVE E: 
+        //METODER TIL OPPGAVE 4: 
         private void ShowFailed_Click(object sender, RoutedEventArgs e)
         {
             // Henter alle som strøk
@@ -151,6 +156,95 @@ namespace Oblig3_EF
             failedListView.ItemsSource = failedGrades;
         }
 
+        //METODER TIL OPPGAVE 5: 
+        private void PopulateManageCourseComboBox() // Metode for å fylle opp ComboBox med kurs
+        {
+            manageCourseComboBox.ItemsSource = Courses.OrderBy(c => c.Coursename);
+        }
+
+        private void ManageCourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) // Kalles når brukeren velger et kurs i ComboBoxen
+        {
+            LoadParticipants();
+        }
+
+        private void LoadParticipants_Click(object sender, RoutedEventArgs e) // Henter deltakere for det valgte kurset
+        {
+            LoadParticipants();
+        }
+
+        private void LoadParticipants()
+        {
+            if (manageCourseComboBox.SelectedItem is Course selectedCourse)
+            {
+                var participants = dx.Grades
+                    .Include(g => g.Student)
+                    .Where(g => g.Coursecode == selectedCourse.Coursecode)
+                    .ToList();
+                participantsListView.ItemsSource = participants;
+            }
+        }
+
+        private void AddStudentToCourse_Click(object sender, RoutedEventArgs e)
+        {
+            if (manageCourseComboBox.SelectedItem is Course selectedCourse)
+            {
+               
+                if (int.TryParse(addStudentIdTextBox.Text, out int studentId))  // hent student-ID fra tekstboksen
+                {
+                    var student = dx.Students.FirstOrDefault(s => s.Id == studentId); // finn student i databasen
+                    if (student != null)
+                    {
+                        if (addGradeComboBox.SelectedItem is ComboBoxItem gradeItem)  // hent valgt grade fra Combobox
+                        {
+                            string gradeValue = gradeItem.Content.ToString();
+                            var newGrade = new Grade //oppretter ny grade på studenten
+                            {
+                                Studentid = studentId,
+                                Coursecode = selectedCourse.Coursecode,
+                                Grade1 = gradeValue
+                            };
+                            dx.Grades.Add(newGrade);
+                            dx.SaveChanges();
+
+                            LoadParticipants();
+
+                            addStudentIdTextBox.Clear(); //rydde i input-datafelt
+                            addGradeComboBox.SelectedIndex = -1;
+                        }
+                        else //grade ikke valgt
+                        {
+                            MessageBox.Show("Vennligst velg en grade."); 
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Studenten ble ikke funnet.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vennligst skriv inn et gyldig student-ID.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vennligst velg et kurs først.");
+            }
+        }
+
+        private void RemoveStudentFromCourse_Click(object sender, RoutedEventArgs e)
+        {
+            if (participantsListView.SelectedItem is Grade selectedGrade)
+            {
+                dx.Grades.Remove(selectedGrade);
+                dx.SaveChanges();
+                LoadParticipants();
+            }
+            else
+            {
+                MessageBox.Show("Vennligst velg en deltaker å fjerne.");
+            }
+        }
 
     }
 }

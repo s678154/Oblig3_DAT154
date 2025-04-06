@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
-            <!-- OPPGAVE A -->
+            <!-- OPPGAVE 1 -->
             <!-- Fane for studenter -->
             <TabItem Header="Studenter">
                 <Grid>
@@ -32,7 +32,7 @@
                 </Grid>
             </TabItem>
 
-            <!-- OPPGAVE B -->
+            <!-- OPPGAVE 2 -->
             <!-- Fane for kurs -->
             <TabItem Header="Courses">
                 <Grid>
@@ -58,7 +58,7 @@
                 </Grid>
             </TabItem>
             
-            <!--OPPGAVE C-->
+            <!--OPPGAVE 3-->
             <TabItem Header="Grades">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -94,7 +94,7 @@
             </TabItem>
 
             
-            <!--OPPGAVE D:-->
+            <!--OPPGAVE 4:-->
             <TabItem Header="Failed Students">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -117,6 +117,67 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                </Grid>
+            </TabItem>
+        
+            
+            <!-- OPPGAVE 5: -->
+            <TabItem Header="Add/Rem Participants">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <!-- Rad for kursvalg -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Rad for deltakerliste -->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Velg kurs -->
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="Select Course:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox x:Name="manageCourseComboBox" Width="200" 
+                      SelectionChanged="ManageCourseComboBox_SelectionChanged"
+                      DisplayMemberPath="Coursename"
+                      SelectedValuePath="Coursecode"/>
+                        <Button Content="View Students For Course" Margin="10,0,0,0" Click="LoadParticipants_Click"/>
+                    </StackPanel>
+
+                    <!-- Deltakerliste -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <!-- Liste for deltakere -->
+                            <RowDefinition Height="*"/>
+                            <!-- Kontroller for å legge til/fjerne deltakere -->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- ListView for deltakere -->
+                        <ListView x:Name="participantsListView" Grid.Row="0" Margin="0,0,0,10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Student" Width="150" DisplayMemberBinding="{Binding Student.Studentname}" />
+                                    <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding Student.Id}" />
+                                    <GridViewColumn Header="Grade" Width="100" DisplayMemberBinding="{Binding Grade1}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <!-- Legge til ny deltaker -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="Student ID:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBox x:Name="addStudentIdTextBox" Width="100" Margin="0,0,10,0"/>
+                            <TextBlock Text="Grade:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <ComboBox x:Name="addGradeComboBox" Width="100">
+                                <ComboBoxItem Content="A"/>
+                                <ComboBoxItem Content="B"/>
+                                <ComboBoxItem Content="C"/>
+                                <ComboBoxItem Content="D"/>
+                                <ComboBoxItem Content="E"/>
+                                <ComboBoxItem Content="F"/>
+                            </ComboBox>
+                            <Button Content="Add Student" Margin="10,0,0,0" Click="AddStudentToCourse_Click"/>
+                            <Button Content="Remove Selected" Margin="10,0,0,0" Click="RemoveStudentFromCourse_Click"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
 

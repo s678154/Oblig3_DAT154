@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\semma\\Documents\\4 Semester\\DAT154\\Oblig3_EF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|c:\\users\\semma\\documents\\4 semester\\dat154\\oblig3_ef\\oblig3_ef\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|solutionrelative:oblig3_ef\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|c:\\users\\semma\\documents\\4 semester\\dat154\\oblig3_ef\\oblig3_ef\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|solutionrelative:oblig3_ef\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|c:\\users\\semma\\documents\\4 semester\\dat154\\oblig3_ef\\oblig3_ef\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7B1FDE04-81CD-4966-820E-0BF72EE1B08F}|Oblig3_EF\\Oblig3_EF.csproj|solutionrelative:oblig3_ef\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,20 +34,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\semma\\Documents\\4 Semester\\DAT154\\Oblig3_EF\\Oblig3_EF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Oblig3_EF\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\semma\\Documents\\4 Semester\\DAT154\\Oblig3_EF\\Oblig3_EF\\MainWindow.xaml.cs",
               "RelativeToolTip": "Oblig3_EF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAwwIsAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAgwMsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-03T11:44:37.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\semma\\Documents\\4 Semester\\DAT154\\Oblig3_EF\\Oblig3_EF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Oblig3_EF\\MainWindow.xaml",
